@@ -74,11 +74,11 @@ const Nav: React.FC<Props> = ({theme, toggleTheme, sideBar, setSideBar, toggleSi
                             <a href="#artwork" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Artwork</a>
                             <a href="#contact" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Contact</a>
                             <p>|</p>
-                            <button onClick={toggleTheme} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
-                                dangerouslySetInnerHTML={theme === "light-theme" ? {__html: svgs.moon} : {__html: svgs.sun}}>
-                            </button>
                             <div className="highlight" style={{left: highlightPosition.left, width: highlightPosition.width}}></div>
                         </div>
+                        <button onClick={toggleTheme}
+                                dangerouslySetInnerHTML={theme === "light-theme" ? {__html: svgs.moon} : {__html: svgs.sun}}>
+                        </button>
                     </div>
                 </div>
             </div>

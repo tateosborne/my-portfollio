@@ -56,17 +56,22 @@
                     padding: 1rem;
                     color: themed("accent");
                 }
+            }
 
-                button {
-                    background-color: rgba(themed("primary"), 0.0);
-                    transition: all 0.2s;
+            button {
+                background-color: rgba(themed("primary"), 0.0);
+                transition: all 0.2s;
+                width: 3em;
+                height: 3em;
 
-                    svg {
-                        width: 1.5em;
-                        height: auto;
+                svg {
+                    width: 1.5em;
+                    height: auto;
 
-                        fill: themed("accent");
-                    }
+                    fill: themed("accent");
+                }
+                &:hover {
+                    background-color: rgba(themed("accent"), 0.2);
                 }
             }
         }
