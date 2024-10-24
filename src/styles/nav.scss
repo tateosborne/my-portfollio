@@ -3,12 +3,13 @@
 @include themify($themes) {
     .desktop {
         .nav-bar {
-            width: 80%;
-            height: 64px;
-            padding: 1%;
-            left: 9%;
+            width: fit-content;
+            height: 30px;
+            padding: 1%;;
             top: 0.25em;
             position: fixed;
+            left: 50%;
+            transform: translate(-50%, 0);
             z-index: 99;
             border-radius: 30px;
 
@@ -17,36 +18,43 @@
             align-items: center;
             font-size: 18px;
             font-weight: 700;
-            background-color: rgba(themed("primary"), 0.8);
+            // background-color: rgba(themed("primary"), 0.8);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             box-shadow: 0px 0px 50px rgba(themed("shadow"), 0.25);
 
             transition: all 0.2s;
 
-            p {
-                color: themed("primary");
-                background-color: themed("accent");
-                padding: 0.25em;
-                border-radius: 10px;
-                animation: glow 4s infinite;
-                transition: all 0.2s;
-            }
-
             .nav-items {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
+                justify-content: center;
+
+                .highlight {
+                    position: absolute;
+                    height: 30px;
+                    z-index: -1;
+                    background-color: rgba(themed("accent"), 0.2);
+                    border-radius: 5px;
+                    transition: left 0.25s ease-out,
+                                width 0.25s linear;
+                }
                 
                 a {
-                    margin: 1em;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    padding-top: 0.25rem;
+                    padding-bottom: 0.25rem;
 
-                    color: themed("text");
+                    color: themed("accent");
                     text-decoration: none;
                     transition: all 0.2s;
-
-                    &:hover {
-                        color: themed("accent");
-                    }
+                }
+                
+                p {
+                    padding: 1rem;
+                    color: themed("accent");
                 }
 
                 button {
@@ -54,14 +62,10 @@
                     transition: all 0.2s;
 
                     svg {
-                        width: 2em;
+                        width: 1.5em;
                         height: auto;
 
-                        fill: themed("text");
-
-                        &:hover {
-                            fill: themed("accent");
-                        }
+                        fill: themed("accent");
                     }
                 }
             }
@@ -153,72 +157,6 @@
                     }
                 }
             }
-        }
-    }
-    
-    @keyframes glow {
-        0% {
-            box-shadow: 0px 0px 2em rgba(themed("accent"), 1.0);
-        }
-        5% {
-            box-shadow: 0px 0px 1.85em rgba(themed("accent"), 1.0);
-        }
-        10% {
-            box-shadow: 0px 0px 1.7em rgba(themed("accent"), 1.0);
-        }
-        15% {
-            box-shadow: 0px 0px 1.55em rgba(themed("accent"), 1.0);
-        }
-        20% {
-            box-shadow: 0px 0px 1.4em rgba(themed("accent"), 1.0);
-        }
-        25% {
-            box-shadow: 0px 0px 1.25em rgba(themed("accent"), 1.0);
-        }
-        30% {
-            box-shadow: 0px 0px 1.1em rgba(themed("accent"), 1.0);
-        }
-        35% {
-            box-shadow: 0px 0px 0.95em rgba(themed("accent"), 1.0);
-        }
-        40% {
-            box-shadow: 0px 0px 0.80em rgba(themed("accent"), 1.0);
-        }
-        45% {
-            box-shadow: 0px 0px 0.65em rgba(themed("accent"), 1.0);
-        }
-        50% {
-            box-shadow: 0px 0px 0.5em rgba(themed("accent"), 1.0);
-        }
-        55% {
-            box-shadow: 0px 0px 0.65em rgba(themed("accent"), 1.0);
-        }
-        60% {
-            box-shadow: 0px 0px 0.80em rgba(themed("accent"), 1.0);
-        }
-        65% {
-            box-shadow: 0px 0px 0.95em rgba(themed("accent"), 1.0);
-        }
-        70% {
-            box-shadow: 0px 0px 1.1em rgba(themed("accent"), 1.0);
-        }
-        75% {
-            box-shadow: 0px 0px 1.25em rgba(themed("accent"), 1.0);
-        }
-        80% {
-            box-shadow: 0px 0px 1.4em rgba(themed("accent"), 1.0);
-        }
-        85% {
-            box-shadow: 0px 0px 1.55em rgba(themed("accent"), 1.0);
-        }
-        90% {
-            box-shadow: 0px 0px 1.7em rgba(themed("accent"), 1.0);
-        }
-        95% {
-            box-shadow: 0px 0px 1.85em rgba(themed("accent"), 1.0);
-        }
-        100% {
-            box-shadow: 0px 0px 2.0em rgba(themed("accent"), 1.0);
         }
     }
 }

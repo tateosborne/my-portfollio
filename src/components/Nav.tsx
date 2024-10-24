@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import '../styles/nav.scss'
 import svgs from '../svgs'
 
@@ -19,23 +19,65 @@ const Nav: React.FC<Props> = ({theme, toggleTheme, sideBar, setSideBar, toggleSi
         device = "desktop";
     }
 
+    const [highlightPosition, setHighlightPosition] = useState({ left: '10px', width: '30px' });
+
+    const getActiveHash = () => {
+        return window.location.hash;
+    };
+
+    const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+        const navBar = document.querySelector('.nav-bar')!.getBoundingClientRect();
+        const navItem = e.currentTarget.getBoundingClientRect();
+
+        const left = navItem.left - navBar.left; 
+        const width = `${navItem.width}px`;
+        
+        setHighlightPosition({
+            left: `${left}px`,
+            width: width
+        });
+    };
+
+    const handleMouseLeave = () => {
+        // Get the current active hash (e.g., "#about")
+        const currPage = getActiveHash();
     
+        // Find the corresponding nav item based on the hash
+        const targetElement = document.querySelector(`.nav-items a[href="${currPage}"]`);
+    
+        if (targetElement) {
+            const navBar = document.querySelector('.nav-bar')!.getBoundingClientRect();
+            const targetRect = targetElement.getBoundingClientRect();
+    
+            // Calculate the new left and width for the highlight
+            const left = targetRect.left - navBar.left;
+            const width = `${targetRect.width}px`;
+    
+            // Set the highlight position and size to match the active link
+            setHighlightPosition({
+                left: `${left}px`,
+                width: width
+            });
+        }
+    };
+
     
     return (
         device === "desktop" ? (
             <div className={theme}>
                 <div className={device}>
                     <div className="nav-bar">
-                        <p>tate parmar osborne</p>
                         <div className="nav-items">
-                            <a href="#home">Home</a>
-                            <a href="#about">About</a>
-                            <a href="#projects">Projects</a>
-                            <a href="#artwork">Artwork</a>
-                            <a href="#contact">Contact</a>
-                            <button onClick={toggleTheme}
+                            <a href="#home" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Home</a>
+                            <a href="#about" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>About</a>
+                            <a href="#projects" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Projects</a>
+                            <a href="#artwork" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Artwork</a>
+                            <a href="#contact" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Contact</a>
+                            <p>|</p>
+                            <button onClick={toggleTheme} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
                                 dangerouslySetInnerHTML={theme === "light-theme" ? {__html: svgs.moon} : {__html: svgs.sun}}>
                             </button>
+                            <div className="highlight" style={{left: highlightPosition.left, width: highlightPosition.width}}></div>
                         </div>
                     </div>
                 </div>
