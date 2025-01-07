@@ -39,21 +39,17 @@ const Nav: React.FC<Props> = ({theme, toggleTheme, sideBar, setSideBar, toggleSi
     };
 
     const handleMouseLeave = () => {
-        // Get the current active hash (e.g., "#about")
         const currPage = getActiveHash();
     
-        // Find the corresponding nav item based on the hash
-        const targetElement = document.querySelector(`.nav-items a[href="${currPage}"]`);
+        let targetElement = document.querySelector(`.nav-items a[href="${currPage}"]`);
     
         if (targetElement) {
             const navBar = document.querySelector('.nav-bar')!.getBoundingClientRect();
             const targetRect = targetElement.getBoundingClientRect();
     
-            // Calculate the new left and width for the highlight
             const left = targetRect.left - navBar.left;
             const width = `${targetRect.width}px`;
-    
-            // Set the highlight position and size to match the active link
+
             setHighlightPosition({
                 left: `${left}px`,
                 width: width
